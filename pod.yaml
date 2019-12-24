@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: yunpu-deployment
+  labels:
+    app: yunputest
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: yunputest
+  template:
+    metadata:
+      labels:
+        app: yunputest
+    spec:
+      containers:
+      - name: yunpu-container
+        image: yunputest:1.0
+        ports:
+        - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: yunpu-service
+  labels:
+    app: yunputest
+spec:
+  type: NodePort
+  ports:
+  - port: 5000
+    nodePort: 30025
+    name: yunpu-port
+    protocol: TCP
+  selector:
+    app: yunputest
+
+
