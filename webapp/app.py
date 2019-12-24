@@ -12,7 +12,7 @@ app = Flask(__name__)
 def hello():
     host = socket.gethostname()
     ip = socket.gethostbyname(host)
-    return "Time: %s Host: %s IP: %s" % (time.asctime(time.localtime(time.time())), host, ip)
+    return " Hello test app! \n Time: %s \n Host: %s \n IP: %s" % (time.asctime(time.localtime(time.time())), host, ip)
 
 
 if __name__ == '__main__':
